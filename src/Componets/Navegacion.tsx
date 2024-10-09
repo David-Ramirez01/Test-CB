@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 const links = [
-  { 
+  {
     id: 1,
     name: "Home",
-    href: "/Inicio",
+    href: "/",
   },
   {
     id: 2,
     name: "Contacto",
     href: "/Contacto",
-  }
+  },
 ];
 const Navegacion = () => {
   return (
