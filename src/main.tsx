@@ -10,12 +10,11 @@ import Login from "./routes/Login";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    
     <Router>
       <Navegacion />
       <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/Init" element={<Inicio />} />
         <Route path="/Contacto" element={<Contacto />} />
       </Routes>
     </Router>

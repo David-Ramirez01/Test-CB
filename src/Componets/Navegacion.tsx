@@ -7,7 +7,7 @@ const links = [
   },
   {
     id: 2,
-    name: "Contacto",
+    name: "Contactanos",
     href: "/Contacto",
   },
 ];
