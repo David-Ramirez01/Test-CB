@@ -10,6 +10,7 @@ import Login from "./routes/Login";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    
     <Router>
       <Navegacion />
       <Routes>
