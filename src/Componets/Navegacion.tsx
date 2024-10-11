@@ -40,6 +40,13 @@ const Navegacion = () => {
               </Link>
             </li>
           ))}
+          {user && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/Init">
+                Inicio
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="d-flex ms-auto">
