@@ -7,6 +7,7 @@ import Contacto from "./routes/Contacto";
 import Navegacion from "./Componets/Navegacion";
 import Inicio from "./routes/Inicio";
 import Login from "./routes/Login";
+import Registro from "./routes/Registro";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<Login />} />
         <Route path="/Init" element={<Inicio />} />
         <Route path="/Contacto" element={<Contacto />} />
+        <Route path="/Registrate" element={<Registro />} />
       </Routes>
     </Router>
     <App />

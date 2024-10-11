@@ -1,4 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const Navegacion = useNavigate();
+
+  const handleRegister = () => {
+    Navegacion("/Registrate");
+  };
+
+  const handleInicioS = () => {
+    Navegacion("/Init");
+  };
 
   return (
     <>
@@ -23,8 +34,14 @@ const Login = () => {
               />
             </div>
           </div>
-          <button className="btn btn-dark "> Iniciar Sesion </button>
-          <button className="btn btn-info m-1 "> Registrate </button>
+          <button onClick={handleInicioS} className="btn btn-dark ">
+            {" "}
+            Iniciar Sesion{" "}
+          </button>
+          <button onClick={handleRegister} className="btn btn-info m-1 ">
+            {" "}
+            Registrate{" "}
+          </button>
         </form>
       </div>
     </>
