@@ -1,5 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Fireapp from "../FireBase";
+import { getAuth, signOut } from "firebase/auth";
 import logo from "/logo-removebg-preview.png";
+import { useAuthState } from "react-firebase-hooks/auth";
+const auth = getAuth(Fireapp);
+
 const links = [
   {
     id: 1,
@@ -12,7 +17,14 @@ const links = [
     href: "/Contacto",
   },
 ];
+
 const Navegacion = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    signOut(auth);
+    navigate("/"); // Redirige a la página de inicio después de cerrar sesión
+  };
+  const [user] = useAuthState(auth);
   return (
     <div
       className="navbar bg-dark navbar-expand-lg bg-body-tertiary"
@@ -29,6 +41,17 @@ const Navegacion = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="d-flex ms-auto">
+        {" "}
+        {user ? (
+          <button
+            className=" mr-2 btn btn-outline-danger"
+            onClick={handleLogout}
+          >
+            Cerrar Sesión
+          </button>
+        ) : null}
       </div>
     </div>
   );

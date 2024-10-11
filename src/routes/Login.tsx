@@ -1,14 +1,29 @@
 import { useNavigate } from "react-router-dom";
+import Fireapp from "../FireBase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+const auth = getAuth(Fireapp);
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
   const Navegacion = useNavigate();
 
   const handleRegister = () => {
     Navegacion("/Registrate");
   };
 
-  const handleInicioS = () => {
-    Navegacion("/Init");
+  const handleInicioS = async (e) => {
+    e.preventDefault();
+    setError(null);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      Navegacion("/Init");
+    } catch (err) {
+      setError("Credenciales incorrectas. Inténtalo de nuevo");
+    }
   };
 
   return (
@@ -21,19 +36,24 @@ const Login = () => {
               <input
                 type="email"
                 className="form-control"
-                id="Correo"
+                id="email"
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="E-mail"
+                required
               />
             </div>
             <div className="w-25 p-1">
               <input
                 type="password"
                 className="form-control"
-                id="Contraseña"
+                id="password"
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
+                required
               />
             </div>
           </div>
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <button onClick={handleInicioS} className="btn btn-dark ">
             {" "}
             Iniciar Sesion{" "}
