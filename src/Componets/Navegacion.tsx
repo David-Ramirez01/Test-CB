@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "/logo-removebg-preview.png";
 const links = [
   {
     id: 1,
@@ -19,6 +20,7 @@ const Navegacion = () => {
     >
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav">
+          <img src={logo} width={50} height={50} className="container" />
           {links.map((x) => (
             <li key={x.id} className="nav-item">
               <Link className="nav-link" to={x.href}>
