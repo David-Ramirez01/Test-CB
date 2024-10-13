@@ -7,7 +7,7 @@ const auth = getAuth(Fireapp);
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const Navegacion = useNavigate();
 
@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <div className=" p-5 text-center">
         <h2>Inicia Sesion</h2>
-        <form>
+        <form onSubmit={handleInicioS}>
           <div className="d-flex align-items-center flex-column ">
             <div className="w-25 p-1">
               <input
@@ -54,13 +54,11 @@ const Login = () => {
             </div>
           </div>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-          <button onClick={handleInicioS} className="btn btn-dark ">
-            {" "}
-            Iniciar Sesion{" "}
+          <button type="submit" className="btn btn-dark">
+            Iniciar Sesion
           </button>
-          <button onClick={handleRegister} className="btn btn-info m-1 ">
-            {" "}
-            Registrate{" "}
+          <button onClick={handleRegister} className="btn btn-info m-1">
+            Registrate
           </button>
         </form>
       </div>

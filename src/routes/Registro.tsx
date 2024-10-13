@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import Fireapp from "../FireBase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { useState } from "react";
 const firestore = getFirestore(Fireapp);
 const auth = getAuth(Fireapp);
 
 const Registro = () => {
   const Navegacion = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   function handleRegister(event) {
     event.preventDefault();
@@ -16,18 +18,19 @@ const Registro = () => {
   }
 
   async function RegistrarUser(email: string, password: string) {
-    const infoUser = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    ).then((usuarioFB) => {
-      return usuarioFB;
-    });
-    const docuRef = doc(firestore, `usuarios/${infoUser.user.uid}`);
-    setDoc(docuRef, { email, password });
-    Navegacion("/Init");
+    try {
+      const infoUser = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const docuRef = doc(firestore, `usuarios/${infoUser.user.uid}`);
+      await setDoc(docuRef, { email, password });
+      Navegacion("/Init");
+    } catch (err: unknown) {
+      setError("Ocurrió un error inesperado.");
+    }
   }
-
   const handleRegresar = () => {
     Navegacion("/");
   };
@@ -57,6 +60,7 @@ const Registro = () => {
               />
             </div>
           </div>
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <button type="submit" className="btn btn-dark ">
             {" "}
             Registrase{" "}

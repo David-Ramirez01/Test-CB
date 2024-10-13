@@ -53,7 +53,7 @@ const Navegacion = () => {
         {" "}
         {user ? (
           <button
-            className=" mr-2 btn btn-outline-danger"
+            className=" m-2 btn btn-outline-danger"
             onClick={handleLogout}
           >
             Cerrar Sesión
