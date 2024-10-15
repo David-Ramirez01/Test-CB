@@ -35,9 +35,11 @@ const Navegacion = () => {
           <img src={logo} width={50} height={50} className="container" />
           {links.map((x) => (
             <li key={x.id} className="nav-item">
-              <Link className="nav-link" to={x.href}>
-                {x.name}
-              </Link>
+              {user ? null : (
+                <Link className="nav-link" to={x.href}>
+                  {x.name}
+                </Link>
+              )}
             </li>
           ))}
           {user && (
@@ -52,10 +54,7 @@ const Navegacion = () => {
       <div className="d-flex ms-auto">
         {" "}
         {user ? (
-          <button
-            className=" m-2 btn btn-outline-danger"
-            onClick={handleLogout}
-          >
+          <button className="btn btn-secondary m-2" onClick={handleLogout}>
             Cerrar Sesión
           </button>
         ) : null}
